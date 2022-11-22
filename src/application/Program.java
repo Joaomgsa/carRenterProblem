@@ -1,7 +1,34 @@
 package application;
 
+import model.entities.CarRental;
+import model.entities.Vehicle;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.util.Locale;
+import java.util.Scanner;
+
 public class Program {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+
+        Locale.setDefault(Locale.US);
+
+        Scanner sc = new Scanner(System.in);
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+
+        System.out.println("Entre com os dados de Aluguel");
+        System.out.print("Modelo do Carro");
+        String carModel = sc.nextLine();
+        System.out.print("Retirada (dd/MM/yyyy) :");
+        LocalDateTime start = LocalDateTime.parse(sc.nextLine(), fmt);
+        System.out.print("Retorno (dd/MM/yyyy) :");
+        LocalDateTime finish = LocalDateTime.parse(sc.nextLine(), fmt);
+
+        CarRental cr = new CarRental(start,finish,new Vehicle(carModel));
+
+
+
+        sc.close();
     }
 }
